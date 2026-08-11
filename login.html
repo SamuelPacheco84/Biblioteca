@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Iniciar sesión</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="pagina-login" data-pagina="login">
+  <header class="cabecera">
+    <div class="cabecera__contenedor">
+      <a href="index.html" class="cabecera__marca">
+        <span class="cabecera__icono" aria-hidden="true">📚</span>
+        Biblioteca SENA
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a href="index.html" data-seccion="home">Inicio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenido-principal">
+    <div class="login-card">
+      <h1>Iniciar sesión</h1>
+      <p>Ingresa tus credenciales para ver los libros completos y poder hacer tus reservas.</p>
+
+      <div id="login-error" class="login-error" role="alert" hidden></div>
+
+      <form id="formulario-login" class="login-form" action="#" method="post" novalidate>
+        <label for="login-usuario">Usuario</label>
+        <input
+          type="text"
+          id="login-usuario"
+          name="usuario"
+          autocomplete="username"
+          required
+          placeholder="Tu nombre de usuario"
+        >
+
+        <label for="login-clave">Contraseña</label>
+        <input
+          type="password"
+          id="login-clave"
+          name="clave"
+          autocomplete="current-password"
+          required
+          placeholder="Tu contraseña"
+        >
+
+        <button type="submit" class="boton boton--primario">Ingresar</button>
+      </form>
+
+      <a href="registro.html" class="login-registrarse">Registrarse</a>
+      <a href="index.html" class="login-volver">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>Biblioteca — Acceso seguro</p>
+  </footer>
+
+  <script src="js/datos-usuarios.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

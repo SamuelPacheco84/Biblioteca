@@ -1,0 +1,424 @@
+/* Estilos exclusivos de la página Home */
+
+.hero {
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  border: 2px solid var(--color-azul);
+  border-radius: var(--radio);
+  padding: 3rem 2rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.hero h1 {
+  color: var(--color-azul);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: var(--color-texto-suave);
+  max-width: 640px;
+  margin: 0 auto 1.75rem;
+}
+
+.hero__acciones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+/* Cuando el usuario ya inició sesión, solo se muestra el catálogo */
+
+body.usuario-autenticado .hero {
+  display: none;
+}
+
+
+
+.problemas {
+  margin-bottom: 2.5rem;
+}
+
+.problemas h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  color: var(--color-texto);
+}
+
+.lista-problemas {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lista-problemas li {
+  background: transparent;
+  border-left: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.lista-problemas strong {
+  color: var(--color-primario);
+}
+
+
+
+/* ===========================
+   CATÁLOGO
+=========================== */
+
+
+.accesos-rapidos h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+}
+
+
+
+.catalogo-grid {
+
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fill, minmax(260px, 1fr));
+
+  gap: 1.5rem;
+
+  margin-top: 1rem;
+
+}
+
+
+
+.catalogo-libro {
+
+  max-width: 340px;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
+}
+
+
+
+.catalogo-libro:hover {
+
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 10px 20px rgba(0,0,0,.12);
+
+}
+
+
+
+.catalogo-libro__portada {
+
+  width: 100%;
+
+  aspect-ratio: 3 / 4;
+
+  border-radius: 10px;
+
+  margin-bottom: 1rem;
+
+  border: 1px solid var(--color-borde);
+
+
+  background:
+
+    linear-gradient(
+      180deg,
+      rgba(0, 123, 255, 0.2),
+      rgba(0, 123, 255, 0.45)
+    ),
+
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,.4) 0,
+      rgba(255,255,255,.4) 10px,
+      rgba(255,255,255,.15) 10px,
+      rgba(255,255,255,.15) 20px
+    );
+
+}
+
+
+
+.catalogo-libro h3 {
+
+  color: var(--color-azul);
+
+  margin-bottom: .8rem;
+
+  font-size: 1.2rem;
+
+}
+
+
+
+.catalogo-libro p {
+
+  margin-bottom: .45rem;
+
+}
+
+
+
+.catalogo-libro .boton {
+
+  margin-top: .5rem;
+
+  width: 100%;
+
+  text-align:center;
+
+}
+
+
+
+
+
+/* ===========================
+   ESTADO DISPONIBILIDAD
+=========================== */
+
+
+.catalogo-libro__estado {
+
+  display:inline-block;
+
+  padding:.25rem .6rem;
+
+  border-radius:20px;
+
+  font-size:.85rem;
+
+  font-weight:600;
+
+  margin-bottom:.5rem;
+
+}
+
+
+
+.catalogo-libro__estado--si {
+
+  background:#d4edda;
+
+  color:#155724;
+
+}
+
+
+
+.catalogo-libro__estado--no {
+
+  background:#f8d7da;
+
+  color:#721c24;
+
+}
+
+
+
+
+
+/* ===========================
+   FILTROS DEL CATÁLOGO
+=========================== */
+
+
+.catalogo-filtros {
+
+
+  display:flex;
+
+  gap:20px;
+
+  align-items:end;
+
+  flex-wrap:wrap;
+
+  margin:25px 0 35px;
+
+
+  background:var(--color-fondo);
+
+  border:1px solid var(--color-borde);
+
+  border-radius:var(--radio);
+
+  padding:1.5rem;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.05);
+
+
+}
+
+
+
+.catalogo-filtro {
+
+
+  display:flex;
+
+  flex-direction:column;
+
+  flex:1;
+
+  min-width:220px;
+
+
+}
+
+
+
+.catalogo-filtro label {
+
+
+  font-weight:600;
+
+  margin-bottom:8px;
+
+  color:#333;
+
+
+}
+
+
+
+.catalogo-filtro input,
+.catalogo-filtro select {
+
+
+  padding:12px 15px;
+
+  height:45px;
+
+  border:1px solid #d8d8d8;
+
+  border-radius:10px;
+
+  outline:none;
+
+  font-size:15px;
+
+  transition:.2s;
+
+  background:#fff;
+
+
+}
+
+
+
+.catalogo-filtro input:focus,
+.catalogo-filtro select:focus {
+
+
+  border-color:#2d7ef7;
+
+
+  box-shadow:
+
+  0 0 0 3px rgba(45,126,247,.15);
+
+
+}
+
+
+
+.catalogo-filtro input::placeholder {
+
+
+  color:#999;
+
+
+}
+
+
+
+
+
+/* ===========================
+   MENSAJE SIN RESULTADOS
+=========================== */
+
+
+.aviso-placeholder {
+
+
+  width:100%;
+
+  text-align:center;
+
+  padding:2rem;
+
+  background:#f8f9fa;
+
+  border-radius:12px;
+
+  color:#666;
+
+  font-size:1.1rem;
+
+
+}
+
+
+
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+
+@media(max-width:700px){
+
+
+  .catalogo-filtros {
+
+
+    flex-direction:column;
+
+    gap:15px;
+
+
+  }
+
+
+
+  .catalogo-filtro {
+
+
+    width:100%;
+
+    min-width:100%;
+
+
+  }
+
+
+
+  .catalogo-grid {
+
+
+    grid-template-columns:1fr;
+
+
+  }
+
+
+
+}

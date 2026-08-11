@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Inicio</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body data-pagina="publica">
+  <header class="cabecera">
+    <div class="cabecera__contenedor">
+      <a href="index.html" class="cabecera__marca">
+        <span class="cabecera__icono" aria-hidden="true">📚</span>
+        Biblioteca 
+      </a>
+      <nav class="nav-principal" aria-label="Navegación principal">
+        <a href="index.html" data-seccion="home" class="activo">Inicio</a>
+        <span id="nav-sesion"></span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenido-principal">
+    <section class="hero">
+      <h1>Sistema de gestión bibliotecaria</h1>
+      <p>
+        Digitaliza el préstamo de libros, el control de espacios de estudio y las reservas.
+        Sustituye el registro manuscrito por un proceso claro y en tiempo real.
+      </p>
+      <div class="hero__acciones">
+        <a href="login.html" class="boton boton--primario">Iniciar sesion</a>
+        <a href="registro.html" class="boton boton--secundario">Registrarse</a>
+      </div>
+    </section>
+
+<section id="catalogo" class="accesos-rapidos" aria-labelledby="titulo-accesos">
+
+    <h2 id="titulo-accesos">CATÁLOGO</h2>
+
+    <div class="catalogo-filtros">
+
+        <div class="catalogo-filtro">
+
+            <label for="buscar-libro">
+                Buscar libro
+            </label>
+
+            <input
+                type="text"
+                id="buscar-libro"
+                placeholder="Buscar por título o autor..."
+            >
+
+        </div>
+
+        <div class="catalogo-filtro">
+
+            <label for="filtro-categoria">
+                Categoría
+            </label>
+
+            <select id="filtro-categoria">
+                <option value="">Todas</option>
+            </select>
+
+        </div>
+
+        <div class="catalogo-filtro">
+
+            <label for="filtro-publico">
+                Público
+            </label>
+
+            <select id="filtro-publico">
+                <option value="">Todos</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <div id="catalogo-grid" class="catalogo-grid"></div>
+
+</section>
+  </main>
+
+  <footer class="pie">
+    <p>Biblioteca — Proyecto en desarrollo. Más funciones se agregarán próximamente.</p>
+  </footer>
+
+  <script src="js/datos-usuarios.js"></script>
+  <script src="js/datos-libros.js"></script>
+  <script src="js/catalogo-publico.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navegacion.js"></script>
+</body>
+</html>

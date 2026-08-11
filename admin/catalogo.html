@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Gestionar catálogo</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/admin-catalogo.css">
+</head>
+<body data-rol-requerido="admin">
+  <header class="cabecera">
+    <div class="cabecera__contenedor">
+      <a href="../index.html" class="cabecera__marca">
+        <span class="cabecera__icono" aria-hidden="true">📚</span>
+        Biblioteca
+      </a>
+      <nav class="nav-principal" aria-label="Navegación del panel">
+        <a href="index.html">Panel admin</a>
+        <a href="catalogo.html" class="activo">Catálogo</a>
+        <span class="nav-usuario" id="nav-nombre-usuario"></span>
+        <a href="#" id="btn-cerrar-sesion">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenido-principal">
+    <h1 class="titulo-seccion">Gestionar catálogo</h1>
+    <p class="subtitulo-seccion">
+      Agrega o quita libros y define si están disponibles. Los usuarios verán la cantidad de ejemplares en el catálogo público.
+    </p>
+
+    <section class="admin-seccion admin-seccion--ancho">
+      <h2>Agregar libro</h2>
+
+      <form id="form-agregar-libro" class="form-catalogo-admin" novalidate>
+
+        <div class="form-catalogo-admin__grid">
+
+          <div>
+            <label for="libro-titulo">Nombre del libro</label>
+            <input
+              type="text"
+              id="libro-titulo"
+              name="titulo"
+              required
+              placeholder="Título del libro">
+          </div>
+
+          <div>
+            <label for="libro-autor">Autor</label>
+            <input
+              type="text"
+              id="libro-autor"
+              name="autor"
+              required
+              placeholder="Nombre del autor">
+          </div>
+
+          <div>
+            <label for="libro-anio">Año de publicación</label>
+            <input
+              type="number"
+              id="libro-anio"
+              name="anio"
+              required
+              min="1"
+              max="2100"
+              placeholder="Ej: 2020">
+          </div>
+
+          <div>
+            <label for="libro-disponibles">Disponibles</label>
+            <input
+              type="number"
+              id="libro-disponibles"
+              name="disponibles"
+              required
+              min="0"
+              placeholder="Ej: 5">
+          </div>
+
+          <!-- NUEVO -->
+
+          <div>
+            <label for="libro-categoria">Categoría</label>
+
+            <select id="libro-categoria" name="categoria" required>
+
+              <option value="">Seleccione una categoría</option>
+
+              <option value="Acción">Acción</option>
+              <option value="Aventura">Aventura</option>
+              <option value="Ciencia ficción">Ciencia ficción</option>
+              <option value="Drama">Drama</option>
+              <option value="Educativo">Educativo</option>
+              <option value="Fantasía">Fantasía</option>
+              <option value="Historia">Historia</option>
+              <option value="Infantil">Infantil</option>
+              <option value="Novela">Novela</option>
+              <option value="Romance">Romance</option>
+              <option value="Suspenso">Suspenso</option>
+              <option value="Terror">Terror</option>
+
+            </select>
+          </div>
+
+          <div>
+            <label for="libro-publico">Público</label>
+
+            <select id="libro-publico" name="publico" required>
+
+              <option value="">Seleccione el público</option>
+
+              <option value="Niños">Niños</option>
+              <option value="Adolescentes">Adolescentes</option>
+              <option value="Adultos">Adultos</option>
+              <option value="Docentes">Docentes</option>
+
+            </select>
+          </div>
+
+        </div>
+
+        <button type="submit" class="boton boton--primario">
+          Agregar libro
+        </button>
+
+      </form>
+
+    </section>
+
+    <section class="admin-seccion admin-seccion--ancho" style="margin-top: 1.5rem;">
+
+      <h2>Libros en catálogo</h2>
+
+      <table class="tabla-placeholder">
+
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Autor</th>
+            <th>Año</th>
+            <th>Disponibles</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabla-catalogo-admin"></tbody>
+
+      </table>
+
+      <p id="catalogo-admin-vacio" class="aviso-placeholder" hidden>
+        No hay libros registrados.
+      </p>
+
+      <a href="index.html" class="boton boton--secundario" style="margin-top: 1rem;">
+        Volver al panel
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>Biblioteca — Gestión de catálogo</p>
+  </footer>
+
+  <script src="../js/datos-usuarios.js"></script>
+  <script src="../js/datos-libros.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin-catalogo.js"></script>
+
+</body>
+</html>

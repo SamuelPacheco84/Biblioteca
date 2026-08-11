@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Usuario</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/usuario.css">
+</head>
+<body data-rol-requerido="usuario">
+  <header class="cabecera">
+    <div class="cabecera__contenedor">
+      <a href="../index.html" class="cabecera__marca">
+        <span class="cabecera__icono" aria-hidden="true">📚</span>
+        Biblioteca
+      </a>
+      <nav class="nav-principal" aria-label="Navegación del panel">
+        <a href="../index.html#catalogo">Catalogo</a>
+        <span class="nav-usuario" id="nav-nombre-usuario"></span>
+        <a href="#" id="btn-cerrar-sesion">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenido-principal">
+    <div id="aviso-multa-usuario" class="aviso-multa" hidden aria-live="polite"></div>
+    <h1 class="titulo-seccion">Área de Usuarios</h1>
+    <p class="subtitulo-seccion">
+      Espacio para Usuarios: consultar disponibilidad y solicitar reservas de libros y espacios de estudio.
+    </p>
+
+    <div class="panel-usuario">
+      <section class="bloque-funcion" aria-labelledby="titulo-libros">
+        <h2 id="titulo-libros">
+          <span class="bloque-funcion__icono" aria-hidden="true">📖</span>
+          Reserva de libros
+        </h2>
+        <p>Busca un título y solicita su préstamo o reserva cuando esté disponible.</p>
+        <form class="formulario-placeholder" action="#" method="get" onsubmit="return false;">
+          <label for="buscar-libro">Buscar libro</label>
+          <input type="text" id="buscar-libro" name="buscar-libro" placeholder="Título o autor...">
+          <button type="button" id="btn-reservar-libro" class="boton boton--primario">Reservar</button>
+        </form>
+        <p id="estado-busqueda-libros" class="aviso-placeholder">Escribe para buscar libros por titulo o autor.</p>
+        <ul id="resultados-libros" class="lista-resultados-libros" aria-live="polite"></ul>
+      </section>
+
+      <section class="bloque-funcion" aria-labelledby="titulo-espacios">
+        <h2 id="titulo-espacios">
+          <span class="bloque-funcion__icono" aria-hidden="true">🪑</span>
+          Espacios de estudio
+        </h2>
+        <p>Consulta qué salas o puestos están libres y reserva un horario.</p>
+        <div class="disponibilidad-demo" role="list" aria-label="Vista previa de disponibilidad">
+          <span class="espacio-chip espacio-chip--libre" role="listitem">Sala A — Libre</span>
+          <span class="espacio-chip espacio-chip--ocupado" role="listitem">Sala B — Ocupada</span>
+          <span class="espacio-chip espacio-chip--libre" role="listitem">Mesa 1 — Libre</span>
+          <span class="espacio-chip espacio-chip--ocupado" role="listitem">Mesa 2 — Ocupada</span>
+        </div>
+        <form id="formulario-reserva-espacio" class="formulario-placeholder" action="#" method="post" novalidate style="margin-top: 1.25rem;">
+          <label for="espacio">Espacio</label>
+          <select id="espacio" name="espacio">
+            <option value="">Seleccionar espacio...</option>
+          </select>
+          <label for="fecha-reserva">Fecha y hora</label>
+          <input type="datetime-local" id="fecha-reserva" name="fecha-reserva" required>
+          <label for="docente">Docente responsable (si aplica)</label>
+          <input type="text" id="docente" name="docente" placeholder="Nombre del docente">
+          <button type="submit" class="boton boton--primario">Reservar espacio</button>
+        </form>
+      </section>
+
+      <section
+        id="bloque-biblioteca-docente"
+        class="bloque-funcion bloque-docente"
+        aria-labelledby="titulo-biblioteca-docente"
+        hidden
+      >
+        <h2 id="titulo-biblioteca-docente">
+          <span class="bloque-funcion__icono" aria-hidden="true">🏛️</span>
+          Reserva de biblioteca completa
+        </h2>
+        <p>
+          Para docentes: solicita el uso de toda la biblioteca para una clase o actividad.
+          Indica cuántas sillas necesitas y qué herramientas o apoyo requieres.
+        </p>
+        <form id="formulario-biblioteca-docente" class="formulario-placeholder" action="#" method="post" novalidate>
+          <label class="checkbox-docente">
+            <input type="checkbox" id="reservar-toda-biblioteca" name="reservar-toda-biblioteca">
+            Deseo reservar toda la biblioteca
+          </label>
+
+          <label for="fecha-biblioteca-docente">Fecha y hora del evento</label>
+          <input type="datetime-local" id="fecha-biblioteca-docente" name="fecha-biblioteca-docente" required>
+
+          <label for="cantidad-sillas">Cantidad de sillas necesarias</label>
+          <input
+            type="number"
+            id="cantidad-sillas"
+            name="cantidad-sillas"
+            min="1"
+            max="200"
+            placeholder="Ej: 30"
+            required
+          >
+
+          <label for="otras-necesidades">Otras necesidades o herramientas</label>
+          <textarea
+            id="otras-necesidades"
+            name="otras-necesidades"
+            rows="5"
+            placeholder="Ej: proyector, marcadores, tablero, micrófono, extensiones eléctricas..."
+          ></textarea>
+
+          <button type="submit" class="boton boton--primario">Enviar solicitud</button>
+        </form>
+        <p id="estado-solicitud-biblioteca" class="aviso-placeholder" hidden></p>
+      </section>
+
+      <section class="bloque-funcion" aria-labelledby="titulo-mis-reservas">
+        <h2 id="titulo-mis-reservas">
+          <span class="bloque-funcion__icono" aria-hidden="true">📋</span>
+          Mis reservas
+        </h2>
+        <p>Aquí verás el estado de tus solicitudes (pendiente, aprobada o rechazada).</p>
+        <ul id="lista-mis-reservas" class="lista-mis-reservas"></ul>
+        <p id="mis-reservas-vacio" class="aviso-placeholder">Sin solicitudes por ahora.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>Biblioteca — Área de usuario</p>
+  </footer>
+
+  <script src="../js/datos-usuarios.js"></script>
+  <script src="../js/datos-libros.js"></script>
+  <script src="../js/solicitudes.js"></script>
+  <script src="../js/config-prestamos.js"></script>
+  <script src="../js/multas.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/usuario-multa.js"></script>
+  <script src="../js/usuario-libros.js"></script>
+  <script src="../js/usuario-espacios.js"></script>
+  <script src="../js/usuario-reservas.js"></script>
+  <script src="../js/usuario-docente-biblioteca.js"></script>
+</body>
+</html>
