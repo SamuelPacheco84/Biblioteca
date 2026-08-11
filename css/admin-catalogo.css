@@ -1,0 +1,299 @@
+/* ===========================
+   FORMULARIO AGREGAR LIBRO
+=========================== */
+
+
+.form-catalogo-admin {
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 2rem;
+
+}
+
+
+
+/* Distribución de campos */
+
+.form-catalogo-admin__grid {
+
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 1.4rem;
+
+  margin-bottom: 1.5rem;
+
+}
+
+
+
+/* Etiquetas */
+
+.form-catalogo-admin label {
+
+  display:block;
+
+  font-weight:600;
+
+  font-size:.95rem;
+
+  margin-bottom:.5rem;
+
+  color:var(--color-texto);
+
+}
+
+
+
+/* Inputs y selects */
+
+.form-catalogo-admin input,
+.form-catalogo-admin select {
+
+
+  width:100%;
+
+
+  padding:.75rem 1rem;
+
+
+  border:1px solid var(--color-borde);
+
+
+  border-radius:10px;
+
+
+  font-family:inherit;
+
+
+  font-size:.95rem;
+
+
+  background:#fff;
+
+
+  transition:.2s;
+
+
+  outline:none;
+
+
+}
+
+
+
+.form-catalogo-admin input:focus,
+.form-catalogo-admin select:focus {
+
+
+  border-color:var(--color-azul);
+
+
+  box-shadow:
+
+  0 0 0 3px rgba(0,123,255,.15);
+
+
+}
+
+
+
+/* Select personalizado */
+
+.form-catalogo-admin select {
+
+
+  cursor:pointer;
+
+
+  appearance:none;
+
+
+  background-image:
+
+  linear-gradient(45deg, transparent 50%, #555 50%),
+
+  linear-gradient(135deg, #555 50%, transparent 50%);
+
+
+  background-position:
+
+  calc(100% - 18px) center,
+
+  calc(100% - 12px) center;
+
+
+  background-size:
+
+  6px 6px,
+
+  6px 6px;
+
+
+  background-repeat:no-repeat;
+
+
+}
+
+
+
+
+/* Botón agregar */
+
+.form-catalogo-admin .boton--primario {
+
+
+  padding:.8rem 1.8rem;
+
+
+  font-size:1rem;
+
+
+  border-radius:10px;
+
+
+  transition:.25s;
+
+
+}
+
+
+
+.form-catalogo-admin .boton--primario:hover {
+
+
+  transform:translateY(-2px);
+
+
+  box-shadow:
+
+  0 6px 15px rgba(0,0,0,.15);
+
+
+}
+
+
+
+
+
+/* ===========================
+   BOTÓN ELIMINAR
+=========================== */
+
+
+.btn-eliminar {
+
+
+  background:#dc3545;
+
+
+  color:#fff;
+
+
+  border:none;
+
+
+  padding:.45rem .8rem;
+
+
+  border-radius:8px;
+
+
+  cursor:pointer;
+
+
+}
+
+
+
+.btn-eliminar:hover {
+
+
+  background:#b02a37;
+
+
+  color:#fff;
+
+
+}
+
+
+
+
+
+/* ===========================
+   TABLA DEL CATÁLOGO
+=========================== */
+
+
+.tabla-placeholder {
+
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+
+}
+
+
+
+.tabla-placeholder th {
+
+
+  background:#f1f5f9;
+
+
+  font-weight:700;
+
+
+}
+
+
+
+.tabla-placeholder td,
+.tabla-placeholder th {
+
+
+  padding:.8rem;
+
+
+}
+
+
+
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+
+@media(max-width:700px){
+
+
+  .form-catalogo-admin {
+
+
+    padding:1rem;
+
+
+  }
+
+
+
+  .form-catalogo-admin__grid {
+
+
+    grid-template-columns:1fr;
+
+
+  }
+
+
+}

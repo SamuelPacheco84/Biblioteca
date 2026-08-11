@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Biblioteca — Administrador</title>
+
+  <link rel="stylesheet" href="../css/global.css">
+
+  <link rel="stylesheet" href="../css/admin.css">
+
+</head>
+
+<body data-rol-requerido="admin">
+
+  <header class="cabecera">
+
+    <div class="cabecera__contenedor">
+
+      <a href="../index.html" class="cabecera__marca">
+
+        <span class="cabecera__icono" aria-hidden="true">📚</span>
+
+        Biblioteca
+
+      </a>
+
+      <nav class="nav-principal" aria-label="Navegación del panel">
+
+        <a href="../index.html#catalogo">Catalogo</a>
+
+        <span class="nav-usuario" id="nav-nombre-usuario"></span>
+
+        <a href="#" id="btn-cerrar-sesion">Cerrar sesión</a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <main class="contenido-principal">
+
+    <h1 class="titulo-seccion">Panel de administrador</h1>
+
+    <p class="subtitulo-seccion">
+
+      Aprueba o rechaza solicitudes de estudiantes y docentes. Al decidir, se envía un correo al usuario.
+
+    </p>
+
+
+
+    <div class="dashboard-admin">
+
+      <section class="estadisticas" aria-label="Resumen del día">
+
+        <div class="stat-card">
+          <span id="stat-prestamos" class="stat-card__valor">0</span>
+          <span class="stat-card__etiqueta">Préstamos activos</span>
+      </div>
+      
+      <div class="stat-card">
+          <span id="stat-espacios" class="stat-card__valor">0</span>
+          <span class="stat-card__etiqueta">Espacios ocupados</span>
+      </div>
+      
+      <div class="stat-card">
+          <span id="stat-reservas-pendientes" class="stat-card__valor">0</span>
+          <span class="stat-card__etiqueta">Solicitudes pendientes</span>
+      </div>
+      
+      <div class="stat-card">
+          <span id="stat-libros" class="stat-card__valor">0</span>
+          <span class="stat-card__etiqueta">Ejemplares disponibles</span>
+      </div>
+
+      </section>
+
+
+
+      <section class="admin-seccion admin-seccion--ancho" aria-labelledby="admin-solicitudes">
+
+        <h2 id="admin-solicitudes">Gestión de solicitudes</h2>
+
+        <p>Libros, espacios y biblioteca completa. Aprobar envía confirmación; rechazar pide motivo y notifica por correo.</p>
+
+        <p class="aviso-config-correo">
+
+          Para envío automático a Gmail, configura tus claves en <code>js/config-correo.js</code> (servicio EmailJS).
+
+        </p>
+
+        <table class="tabla-placeholder">
+
+          <thead>
+
+            <tr>
+
+              <th>Tipo</th>
+
+              <th>Usuario</th>
+
+              <th>Correo</th>
+
+              <th>Detalle</th>
+
+              <th>Enviada</th>
+
+              <th>Estado</th>
+
+              <th>Acciones</th>
+
+              <th>Eliminar</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="tabla-solicitudes-admin"></tbody>
+
+        </table>
+
+        <p id="solicitudes-admin-vacio" class="aviso-placeholder">
+
+          No hay solicitudes por ahora.
+
+        </p>
+
+      </section>
+
+
+
+      <div class="admin-secciones">
+
+        <section class="admin-seccion" aria-labelledby="admin-prestamos">
+
+          <h2 id="admin-prestamos">Préstamo de libros</h2>
+
+          <p>Devoluciones, tiempos de préstamo y multas por entrega tardía.</p>
+
+          <a href="prestamos.html" class="boton boton--secundario">Gestionar préstamos</a>
+
+        </section>
+
+
+
+        <section class="admin-seccion" aria-labelledby="admin-espacios">
+
+          <h2 id="admin-espacios">Espacios de estudio</h2>
+
+          <p>Las reservas de espacios se gestionan en la tabla superior.</p>
+
+        </section>
+
+
+
+        <section class="admin-seccion" aria-labelledby="admin-catalogo">
+
+          <h2 id="admin-catalogo">Catálogo e inventario</h2>
+
+          <p>Alta, edición y baja de libros; control de ejemplares disponibles.</p>
+
+          <a href="catalogo.html" class="boton boton--secundario">Gestionar catálogo</a>
+
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <div id="modal-rechazo" class="modal-rechazo" hidden>
+
+    <div class="modal-rechazo__contenido" role="dialog" aria-labelledby="titulo-modal-rechazo" aria-modal="true">
+
+      <h3 id="titulo-modal-rechazo">Motivo del rechazo</h3>
+
+      <p>Escribe la razón. Se enviará por correo al usuario.</p>
+
+      <form id="form-rechazo-solicitud">
+
+        <label for="motivo-rechazo">Justificación</label>
+
+        <textarea id="motivo-rechazo" rows="4" required placeholder="Ej: el espacio ya está reservado en ese horario..."></textarea>
+
+        <div class="modal-rechazo__acciones">
+
+          <button type="button" id="cerrar-modal-rechazo" class="boton boton--secundario">Cancelar</button>
+
+          <button type="submit" class="boton boton--primario">Rechazar y enviar correo</button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+
+  <footer class="pie">
+
+    <p>Biblioteca — Panel de administrador</p>
+
+  </footer>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script src="../js/datos-usuarios.js"></script>
+
+  <script src="../js/datos-libros.js"></script>
+
+  <script src="../js/config-correo.js"></script>
+
+  <script src="../js/solicitudes.js"></script>
+
+  <script src="../js/config-prestamos.js"></script>
+
+  <script src="../js/multas.js"></script>
+
+  <script src="../js/prestamos.js"></script>
+
+  <script src="../js/envio-correo.js"></script>
+
+  <script src="../js/auth.js"></script>
+
+  <script src="../js/admin-solicitudes.js"></script>
+
+</body>
+
+</html>
+
+

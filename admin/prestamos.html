@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca — Préstamos y multas</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/admin-prestamos.css">
+</head>
+<body data-rol-requerido="admin">
+  <header class="cabecera">
+    <div class="cabecera__contenedor">
+      <a href="../index.html" class="cabecera__marca">
+        <span class="cabecera__icono" aria-hidden="true">📚</span>
+        Biblioteca SENA
+      </a>
+      <nav class="nav-principal" aria-label="Navegación del panel">
+        <a href="index.html">Panel admin</a>
+        <a href="prestamos.html" class="activo">Préstamos</a>
+        <span class="nav-usuario" id="nav-nombre-usuario"></span>
+        <a href="#" id="btn-cerrar-sesion">Cerrar sesión</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenido-principal">
+    <h1 class="titulo-seccion">Préstamos y multas</h1>
+    <p class="subtitulo-seccion">
+      Define el tiempo de préstamo y de multa. Gestiona devoluciones y aplica multas por entrega tardía.
+    </p>
+
+    <section class="admin-seccion admin-seccion--ancho">
+      <h2>Tiempos configurados (solo administrador)</h2>
+      <form id="form-config-prestamos" class="form-config-tiempos">
+        <fieldset>
+          <legend>Tiempo de préstamo del libro</legend>
+          <div class="form-config-tiempos__grid">
+            <div><label for="prestamo-dias">Días</label><input type="number" id="prestamo-dias" min="0" required></div>
+            <div><label for="prestamo-horas">Horas</label><input type="number" id="prestamo-horas" min="0" max="23" required></div>
+            <div><label for="prestamo-minutos">Minutos</label><input type="number" id="prestamo-minutos" min="0" max="59" required></div>
+            <div><label for="prestamo-segundos">Segundos</label><input type="number" id="prestamo-segundos" min="0" max="59" required></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Duración de la multa (cuando no devuelve a tiempo)</legend>
+          <div class="form-config-tiempos__grid">
+            <div><label for="multa-dias">Días</label><input type="number" id="multa-dias" min="0" required></div>
+            <div><label for="multa-horas">Horas</label><input type="number" id="multa-horas" min="0" max="23" required></div>
+            <div><label for="multa-minutos">Minutos</label><input type="number" id="multa-minutos" min="0" max="59" required></div>
+            <div><label for="multa-segundos">Segundos</label><input type="number" id="multa-segundos" min="0" max="59" required></div>
+          </div>
+        </fieldset>
+        <button type="submit" class="boton boton--primario">Guardar tiempos</button>
+      </form>
+      <p id="estado-config-prestamos" class="aviso-placeholder" hidden></p>
+    </section>
+
+    <section class="admin-seccion admin-seccion--ancho" style="margin-top: 1.5rem;">
+      <h2>Usuarios con reserva de libro activa</h2>
+      <p>Marca si ya devolvió el libro. Si pasó el plazo, puedes aplicar <strong class="texto-multa">Multa</strong>.</p>
+      <table class="tabla-placeholder">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Libro</th>
+            <th>Límite devolución</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-prestamos-activos"></tbody>
+      </table>
+      <p id="prestamos-activos-vacio" class="aviso-placeholder" hidden>No hay préstamos activos.</p>
+    </section>
+
+    <section class="admin-seccion admin-seccion--ancho seccion-multas" style="margin-top: 1.5rem;">
+      <h2 class="titulo-multa">Multas activas</h2>
+      <table class="tabla-placeholder tabla-multas">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Libro</th>
+            <th>Fin de multa</th>
+            <th>Tiempo restante</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-multas-activas"></tbody>
+      </table>
+      <p id="multas-activas-vacio" class="aviso-placeholder" hidden>No hay multas activas.</p>
+      <a href="index.html" class="boton boton--secundario" style="margin-top: 1rem;">Volver al panel</a>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Biblioteca — Préstamos y multas</p>
+  </footer>
+
+  <script src="../js/datos-usuarios.js"></script>
+  <script src="../js/datos-libros.js"></script>
+  <script src="../js/solicitudes.js"></script>
+  <script src="../js/config-prestamos.js"></script>
+  <script src="../js/multas.js"></script>
+  <script src="../js/prestamos.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin-prestamos.js"></script>
+</body>
+</html>
